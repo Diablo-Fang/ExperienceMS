@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="dkd-quartz" />
+        <module name="dkd-generator" />
+        <module name="dkd-framework" />
+        <module name="dkd-manage" />
+        <module name="dkd-admin" />
+        <module name="dkd-system" />
+        <module name="dkd-common" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="dkd-admin" target="1.8" />
+      <module name="dkd-common" target="1.8" />
+      <module name="dkd-framework" target="1.8" />
+      <module name="dkd-generator" target="1.8" />
+      <module name="dkd-manage" target="1.8" />
+      <module name="dkd-parent" target="1.8" />
+      <module name="dkd-quartz" target="1.8" />
+      <module name="dkd-system" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/ExperienceMS.iml" filepath="$PROJECT_DIR$/.idea/ExperienceMS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dkd-parent/dkd-admin/dkd-admin.iml" filepath="$PROJECT_DIR$/dkd-parent/dkd-admin/dkd-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dkd-parent/dkd-common/dkd-common.iml" filepath="$PROJECT_DIR$/dkd-parent/dkd-common/dkd-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dkd-parent/dkd-framework/dkd-framework.iml" filepath="$PROJECT_DIR$/dkd-parent/dkd-framework/dkd-framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dkd-parent/dkd-generator/dkd-generator.iml" filepath="$PROJECT_DIR$/dkd-parent/dkd-generator/dkd-generator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dkd-parent/dkd-manage/dkd-manage.iml" filepath="$PROJECT_DIR$/dkd-parent/dkd-manage/dkd-manage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dkd-parent/dkd-parent.iml" filepath="$PROJECT_DIR$/dkd-parent/dkd-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dkd-parent/dkd-quartz/dkd-quartz.iml" filepath="$PROJECT_DIR$/dkd-parent/dkd-quartz/dkd-quartz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dkd-parent/dkd-system/dkd-system.iml" filepath="$PROJECT_DIR$/dkd-parent/dkd-system/dkd-system.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dkd.manage.mapper.Experiment1Mapper">
+    
+    <resultMap type="Experiment1" id="Experiment1Result">
+        <result property="id"    column="id"    />
+        <result property="studentId"    column="student_id"    />
+        <result property="table1vc1Field"    column="table1vc1Field"    />
+        <result property="table1vb1Field"    column="table1vb1Field"    />
+        <result property="table1ve1Field"    column="table1ve1Field"    />
+        <result property="table1vc2Field"    column="table1vc2Field"    />
+        <result property="table1vb2Field"    column="table1vb2Field"    />
+        <result property="table1ve2Field"    column="table1ve2Field"    />
+        <result property="table2vs1Field"    column="table2vs1Field"    />
+        <result property="table2vol1Field"    column="table2vol1Field"    />
+        <result property="table2avl1Field"    column="table2avl1Field"    />
+        <result property="table2vo1Field"    column="table2vo1Field"    />
+        <result property="table2av1Field"    column="table2av1Field"    />
+        <result property="table2ri1Field"    column="table2ri1Field"    />
+        <result property="table2ro1Field"    column="table2ro1Field"    />
+        <result property="table2vo3Field"    column="table2vo3Field"    />
+        <result property="table2av3Field"    column="table2av3Field"    />
+        <result property="table2w1Field"    column="table2w1Field"    />
+        <result property="table2vs2Field"    column="table2vs2Field"    />
+        <result property="table2vol2Field"    column="table2vol2Field"    />
+        <result property="table2avl2Field"    column="table2avl2Field"    />
+        <result property="table2vo2Field"    column="table2vo2Field"    />
+        <result property="table2av2Field"    column="table2av2Field"    />
+        <result property="table2ri2Field"    column="table2ri2Field"    />
+        <result property="table2ro2Field"    column="table2ro2Field"    />
+        <result property="table2vo4Field"    column="table2vo4Field"    />
+        <result property="table2av4Field"    column="table2av4Field"    />
+        <result property="table2w2Field"    column="table2w2Field"    />
+        <result property="table3vc11Field"    column="table3vc11Field"    />
+        <result property="table3vc21Field"    column="table3vc21Field"    />
+        <result property="table3vb11Field"    column="table3vb11Field"    />
+        <result property="table3vb21Field"    column="table3vb21Field"    />
+        <result property="table3ve11Field"    column="table3ve11Field"    />
+        <result property="table3ve21Field"    column="table3ve21Field"    />
+        <result property="table3vc12Field"    column="table3vc12Field"    />
+        <result property="table3vc22Field"    column="table3vc22Field"    />
+        <result property="table3vb12Field"    column="table3vb12Field"    />
+        <result property="table3vb22Field"    column="table3vb22Field"    />
+        <result property="table3ve12Field"    column="table3ve12Field"    />
+        <result property="table3ve22Field"    column="table3ve22Field"    />
+        <result property="table4vo11Field"    column="table4vo11Field"    />
+        <result property="table4vo21Field"    column="table4vo21Field"    />
+        <result property="table4vo1Field"    column="table4vo1Field"    />
+        <result property="table4a1Field"    column="table4a1Field"    />
+        <result property="table4k1Field"    column="table4k1Field"    />
+        <result property="table4vo12Field"    column="table4vo12Field"    />
+        <result property="table4vo22Field"    column="table4vo22Field"    />
+        <result property="table4vo2Field"    column="table4vo2Field"    />
+        <result property="table4a2Field"    column="table4a2Field"    />
+        <result property="table4vo13Field"    column="table4vo13Field"    />
+        <result property="table4vo23Field"    column="table4vo23Field"    />
+        <result property="table4vo3Field"    column="table4vo3Field"    />
+        <result property="table4a3Field"    column="table4a3Field"    />
+        <result property="table4k2Field"    column="table4k2Field"    />
+        <result property="table4vo14Field"    column="table4vo14Field"    />
+        <result property="table4vo24Field"    column="table4vo24Field"    />
+        <result property="table4vo4Field"    column="table4vo4Field"    />
+        <result property="table4a4Field"    column="table4a4Field"    />
+        <result property="table5vi1Field"    column="table5vi1Field"    />
+        <result property="table5vo1Field"    column="table5vo1Field"    />
+        <result property="table5vi2Field"    column="table5vi2Field"    />
+        <result property="table5vo2Field"    column="table5vo2Field"    />
+        <result property="currentText"    column="current_text"    />
+        <result property="vi1vo1Image"    column="vi1vo1_image"    />
+        <result property="vi1vo2Image"    column="vi1vo2_image"    />
+        <result property="vo1vo2Image"    column="vo1vo2_image"    />
+        <result property="experimentScore"    column="experiment_score"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectExperiment1Vo">
+        select id, student_id, table1vc1Field, table1vb1Field, table1ve1Field, table1vc2Field, table1vb2Field, table1ve2Field, table2vs1Field, table2vol1Field, table2avl1Field, table2vo1Field, table2av1Field, table2ri1Field, table2ro1Field, table2vo3Field, table2av3Field, table2w1Field, table2vs2Field, table2vol2Field, table2avl2Field, table2vo2Field, table2av2Field, table2ri2Field, table2ro2Field, table2vo4Field, table2av4Field, table2w2Field, table3vc11Field, table3vc21Field, table3vb11Field, table3vb21Field, table3ve11Field, table3ve21Field, table3vc12Field, table3vc22Field, table3vb12Field, table3vb22Field, table3ve12Field, table3ve22Field, table4vo11Field, table4vo21Field, table4vo1Field, table4a1Field, table4k1Field, table4vo12Field, table4vo22Field, table4vo2Field, table4a2Field, table4vo13Field, table4vo23Field, table4vo3Field, table4a3Field, table4k2Field, table4vo14Field, table4vo24Field, table4vo4Field, table4a4Field, table5vi1Field, table5vo1Field, table5vi2Field, table5vo2Field, current_text, vi1vo1_image, vi1vo2_image, vo1vo2_image, experiment_score, create_time, update_time from tb_experiment1
+    </sql>
+
+    <select id="selectExperiment1List" parameterType="Experiment1" resultMap="Experiment1Result">
+        <include refid="selectExperiment1Vo"/>
+        <where>  
+            <if test="studentId != null "> and student_id = #{studentId}</if>
+        </where>
+    </select>
+    
+    <select id="selectExperiment1ById" parameterType="Long" resultMap="Experiment1Result">
+        <include refid="selectExperiment1Vo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertExperiment1" parameterType="Experiment1" useGeneratedKeys="true" keyProperty="id">
+        insert into tb_experiment1
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="studentId != null">student_id,</if>
+            <if test="table1vc1Field != null">table1vc1Field,</if>
+            <if test="table1vb1Field != null">table1vb1Field,</if>
+            <if test="table1ve1Field != null">table1ve1Field,</if>
+            <if test="table1vc2Field != null">table1vc2Field,</if>
+            <if test="table1vb2Field != null">table1vb2Field,</if>
+            <if test="table1ve2Field != null">table1ve2Field,</if>
+            <if test="table2vs1Field != null">table2vs1Field,</if>
+            <if test="table2vol1Field != null">table2vol1Field,</if>
+            <if test="table2avl1Field != null">table2avl1Field,</if>
+            <if test="table2vo1Field != null">table2vo1Field,</if>
+            <if test="table2av1Field != null">table2av1Field,</if>
+            <if test="table2ri1Field != null">table2ri1Field,</if>
+            <if test="table2ro1Field != null">table2ro1Field,</if>
+            <if test="table2vo3Field != null">table2vo3Field,</if>
+            <if test="table2av3Field != null">table2av3Field,</if>
+            <if test="table2w1Field != null">table2w1Field,</if>
+            <if test="table2vs2Field != null">table2vs2Field,</if>
+            <if test="table2vol2Field != null">table2vol2Field,</if>
+            <if test="table2avl2Field != null">table2avl2Field,</if>
+            <if test="table2vo2Field != null">table2vo2Field,</if>
+            <if test="table2av2Field != null">table2av2Field,</if>
+            <if test="table2ri2Field != null">table2ri2Field,</if>
+            <if test="table2ro2Field != null">table2ro2Field,</if>
+            <if test="table2vo4Field != null">table2vo4Field,</if>
+            <if test="table2av4Field != null">table2av4Field,</if>
+            <if test="table2w2Field != null">table2w2Field,</if>
+            <if test="table3vc11Field != null">table3vc11Field,</if>
+            <if test="table3vc21Field != null">table3vc21Field,</if>
+            <if test="table3vb11Field != null">table3vb11Field,</if>
+            <if test="table3vb21Field != null">table3vb21Field,</if>
+            <if test="table3ve11Field != null">table3ve11Field,</if>
+            <if test="table3ve21Field != null">table3ve21Field,</if>
+            <if test="table3vc12Field != null">table3vc12Field,</if>
+            <if test="table3vc22Field != null">table3vc22Field,</if>
+            <if test="table3vb12Field != null">table3vb12Field,</if>
+            <if test="table3vb22Field != null">table3vb22Field,</if>
+            <if test="table3ve12Field != null">table3ve12Field,</if>
+            <if test="table3ve22Field != null">table3ve22Field,</if>
+            <if test="table4vo11Field != null">table4vo11Field,</if>
+            <if test="table4vo21Field != null">table4vo21Field,</if>
+            <if test="table4vo1Field != null">table4vo1Field,</if>
+            <if test="table4a1Field != null">table4a1Field,</if>
+            <if test="table4k1Field != null">table4k1Field,</if>
+            <if test="table4vo12Field != null">table4vo12Field,</if>
+            <if test="table4vo22Field != null">table4vo22Field,</if>
+            <if test="table4vo2Field != null">table4vo2Field,</if>
+            <if test="table4a2Field != null">table4a2Field,</if>
+            <if test="table4vo13Field != null">table4vo13Field,</if>
+            <if test="table4vo23Field != null">table4vo23Field,</if>
+            <if test="table4vo3Field != null">table4vo3Field,</if>
+            <if test="table4a3Field != null">table4a3Field,</if>
+            <if test="table4k2Field != null">table4k2Field,</if>
+            <if test="table4vo14Field != null">table4vo14Field,</if>
+            <if test="table4vo24Field != null">table4vo24Field,</if>
+            <if test="table4vo4Field != null">table4vo4Field,</if>
+            <if test="table4a4Field != null">table4a4Field,</if>
+            <if test="table5vi1Field != null">table5vi1Field,</if>
+            <if test="table5vo1Field != null">table5vo1Field,</if>
+            <if test="table5vi2Field != null">table5vi2Field,</if>
+            <if test="table5vo2Field != null">table5vo2Field,</if>
+            <if test="currentText != null">current_text,</if>
+            <if test="vi1vo1Image != null">vi1vo1_image,</if>
+            <if test="vi1vo2Image != null">vi1vo2_image,</if>
+            <if test="vo1vo2Image != null">vo1vo2_image,</if>
+            <if test="experimentScore != null">experiment_score,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="studentId != null">#{studentId},</if>
+            <if test="table1vc1Field != null">#{table1vc1Field},</if>
+            <if test="table1vb1Field != null">#{table1vb1Field},</if>
+            <if test="table1ve1Field != null">#{table1ve1Field},</if>
+            <if test="table1vc2Field != null">#{table1vc2Field},</if>
+            <if test="table1vb2Field != null">#{table1vb2Field},</if>
+            <if test="table1ve2Field != null">#{table1ve2Field},</if>
+            <if test="table2vs1Field != null">#{table2vs1Field},</if>
+            <if test="table2vol1Field != null">#{table2vol1Field},</if>
+            <if test="table2avl1Field != null">#{table2avl1Field},</if>
+            <if test="table2vo1Field != null">#{table2vo1Field},</if>
+            <if test="table2av1Field != null">#{table2av1Field},</if>
+            <if test="table2ri1Field != null">#{table2ri1Field},</if>
+            <if test="table2ro1Field != null">#{table2ro1Field},</if>
+            <if test="table2vo3Field != null">#{table2vo3Field},</if>
+            <if test="table2av3Field != null">#{table2av3Field},</if>
+            <if test="table2w1Field != null">#{table2w1Field},</if>
+            <if test="table2vs2Field != null">#{table2vs2Field},</if>
+            <if test="table2vol2Field != null">#{table2vol2Field},</if>
+            <if test="table2avl2Field != null">#{table2avl2Field},</if>
+            <if test="table2vo2Field != null">#{table2vo2Field},</if>
+            <if test="table2av2Field != null">#{table2av2Field},</if>
+            <if test="table2ri2Field != null">#{table2ri2Field},</if>
+            <if test="table2ro2Field != null">#{table2ro2Field},</if>
+            <if test="table2vo4Field != null">#{table2vo4Field},</if>
+            <if test="table2av4Field != null">#{table2av4Field},</if>
+            <if test="table2w2Field != null">#{table2w2Field},</if>
+            <if test="table3vc11Field != null">#{table3vc11Field},</if>
+            <if test="table3vc21Field != null">#{table3vc21Field},</if>
+            <if test="table3vb11Field != null">#{table3vb11Field},</if>
+            <if test="table3vb21Field != null">#{table3vb21Field},</if>
+            <if test="table3ve11Field != null">#{table3ve11Field},</if>
+            <if test="table3ve21Field != null">#{table3ve21Field},</if>
+            <if test="table3vc12Field != null">#{table3vc12Field},</if>
+            <if test="table3vc22Field != null">#{table3vc22Field},</if>
+            <if test="table3vb12Field != null">#{table3vb12Field},</if>
+            <if test="table3vb22Field != null">#{table3vb22Field},</if>
+            <if test="table3ve12Field != null">#{table3ve12Field},</if>
+            <if test="table3ve22Field != null">#{table3ve22Field},</if>
+            <if test="table4vo11Field != null">#{table4vo11Field},</if>
+            <if test="table4vo21Field != null">#{table4vo21Field},</if>
+            <if test="table4vo1Field != null">#{table4vo1Field},</if>
+            <if test="table4a1Field != null">#{table4a1Field},</if>
+            <if test="table4k1Field != null">#{table4k1Field},</if>
+            <if test="table4vo12Field != null">#{table4vo12Field},</if>
+            <if test="table4vo22Field != null">#{table4vo22Field},</if>
+            <if test="table4vo2Field != null">#{table4vo2Field},</if>
+            <if test="table4a2Field != null">#{table4a2Field},</if>
+            <if test="table4vo13Field != null">#{table4vo13Field},</if>
+            <if test="table4vo23Field != null">#{table4vo23Field},</if>
+            <if test="table4vo3Field != null">#{table4vo3Field},</if>
+            <if test="table4a3Field != null">#{table4a3Field},</if>
+            <if test="table4k2Field != null">#{table4k2Field},</if>
+            <if test="table4vo14Field != null">#{table4vo14Field},</if>
+            <if test="table4vo24Field != null">#{table4vo24Field},</if>
+            <if test="table4vo4Field != null">#{table4vo4Field},</if>
+            <if test="table4a4Field != null">#{table4a4Field},</if>
+            <if test="table5vi1Field != null">#{table5vi1Field},</if>
+            <if test="table5vo1Field != null">#{table5vo1Field},</if>
+            <if test="table5vi2Field != null">#{table5vi2Field},</if>
+            <if test="table5vo2Field != null">#{table5vo2Field},</if>
+            <if test="currentText != null">#{currentText},</if>
+            <if test="vi1vo1Image != null">#{vi1vo1Image},</if>
+            <if test="vi1vo2Image != null">#{vi1vo2Image},</if>
+            <if test="vo1vo2Image != null">#{vo1vo2Image},</if>
+            <if test="experimentScore != null">#{experimentScore},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateExperiment1" parameterType="Experiment1">
+        update tb_experiment1
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="studentId != null">student_id = #{studentId},</if>
+            <if test="table1vc1Field != null">table1vc1Field = #{table1vc1Field},</if>
+            <if test="table1vb1Field != null">table1vb1Field = #{table1vb1Field},</if>
+            <if test="table1ve1Field != null">table1ve1Field = #{table1ve1Field},</if>
+            <if test="table1vc2Field != null">table1vc2Field = #{table1vc2Field},</if>
+            <if test="table1vb2Field != null">table1vb2Field = #{table1vb2Field},</if>
+            <if test="table1ve2Field != null">table1ve2Field = #{table1ve2Field},</if>
+            <if test="table2vs1Field != null">table2vs1Field = #{table2vs1Field},</if>
+            <if test="table2vol1Field != null">table2vol1Field = #{table2vol1Field},</if>
+            <if test="table2avl1Field != null">table2avl1Field = #{table2avl1Field},</if>
+            <if test="table2vo1Field != null">table2vo1Field = #{table2vo1Field},</if>
+            <if test="table2av1Field != null">table2av1Field = #{table2av1Field},</if>
+            <if test="table2ri1Field != null">table2ri1Field = #{table2ri1Field},</if>
+            <if test="table2ro1Field != null">table2ro1Field = #{table2ro1Field},</if>
+            <if test="table2vo3Field != null">table2vo3Field = #{table2vo3Field},</if>
+            <if test="table2av3Field != null">table2av3Field = #{table2av3Field},</if>
+            <if test="table2w1Field != null">table2w1Field = #{table2w1Field},</if>
+            <if test="table2vs2Field != null">table2vs2Field = #{table2vs2Field},</if>
+            <if test="table2vol2Field != null">table2vol2Field = #{table2vol2Field},</if>
+            <if test="table2avl2Field != null">table2avl2Field = #{table2avl2Field},</if>
+            <if test="table2vo2Field != null">table2vo2Field = #{table2vo2Field},</if>
+            <if test="table2av2Field != null">table2av2Field = #{table2av2Field},</if>
+            <if test="table2ri2Field != null">table2ri2Field = #{table2ri2Field},</if>
+            <if test="table2ro2Field != null">table2ro2Field = #{table2ro2Field},</if>
+            <if test="table2vo4Field != null">table2vo4Field = #{table2vo4Field},</if>
+            <if test="table2av4Field != null">table2av4Field = #{table2av4Field},</if>
+            <if test="table2w2Field != null">table2w2Field = #{table2w2Field},</if>
+            <if test="table3vc11Field != null">table3vc11Field = #{table3vc11Field},</if>
+            <if test="table3vc21Field != null">table3vc21Field = #{table3vc21Field},</if>
+            <if test="table3vb11Field != null">table3vb11Field = #{table3vb11Field},</if>
+            <if test="table3vb21Field != null">table3vb21Field = #{table3vb21Field},</if>
+            <if test="table3ve11Field != null">table3ve11Field = #{table3ve11Field},</if>
+            <if test="table3ve21Field != null">table3ve21Field = #{table3ve21Field},</if>
+            <if test="table3vc12Field != null">table3vc12Field = #{table3vc12Field},</if>
+            <if test="table3vc22Field != null">table3vc22Field = #{table3vc22Field},</if>
+            <if test="table3vb12Field != null">table3vb12Field = #{table3vb12Field},</if>
+            <if test="table3vb22Field != null">table3vb22Field = #{table3vb22Field},</if>
+            <if test="table3ve12Field != null">table3ve12Field = #{table3ve12Field},</if>
+            <if test="table3ve22Field != null">table3ve22Field = #{table3ve22Field},</if>
+            <if test="table4vo11Field != null">table4vo11Field = #{table4vo11Field},</if>
+            <if test="table4vo21Field != null">table4vo21Field = #{table4vo21Field},</if>
+            <if test="table4vo1Field != null">table4vo1Field = #{table4vo1Field},</if>
+            <if test="table4a1Field != null">table4a1Field = #{table4a1Field},</if>
+            <if test="table4k1Field != null">table4k1Field = #{table4k1Field},</if>
+            <if test="table4vo12Field != null">table4vo12Field = #{table4vo12Field},</if>
+            <if test="table4vo22Field != null">table4vo22Field = #{table4vo22Field},</if>
+            <if test="table4vo2Field != null">table4vo2Field = #{table4vo2Field},</if>
+            <if test="table4a2Field != null">table4a2Field = #{table4a2Field},</if>
+            <if test="table4vo13Field != null">table4vo13Field = #{table4vo13Field},</if>
+            <if test="table4vo23Field != null">table4vo23Field = #{table4vo23Field},</if>
+            <if test="table4vo3Field != null">table4vo3Field = #{table4vo3Field},</if>
+            <if test="table4a3Field != null">table4a3Field = #{table4a3Field},</if>
+            <if test="table4k2Field != null">table4k2Field = #{table4k2Field},</if>
+            <if test="table4vo14Field != null">table4vo14Field = #{table4vo14Field},</if>
+            <if test="table4vo24Field != null">table4vo24Field = #{table4vo24Field},</if>
+            <if test="table4vo4Field != null">table4vo4Field = #{table4vo4Field},</if>
+            <if test="table4a4Field != null">table4a4Field = #{table4a4Field},</if>
+            <if test="table5vi1Field != null">table5vi1Field = #{table5vi1Field},</if>
+            <if test="table5vo1Field != null">table5vo1Field = #{table5vo1Field},</if>
+            <if test="table5vi2Field != null">table5vi2Field = #{table5vi2Field},</if>
+            <if test="table5vo2Field != null">table5vo2Field = #{table5vo2Field},</if>
+            <if test="currentText != null">current_text = #{currentText},</if>
+            <if test="vi1vo1Image != null">vi1vo1_image = #{vi1vo1Image},</if>
+            <if test="vi1vo2Image != null">vi1vo2_image = #{vi1vo2Image},</if>
+            <if test="vo1vo2Image != null">vo1vo2_image = #{vo1vo2Image},</if>
+            <if test="experimentScore != null">experiment_score = #{experimentScore},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteExperiment1ById" parameterType="Long">
+        delete from tb_experiment1 where id = #{id}
+    </delete>
+
+    <delete id="deleteExperiment1ByIds" parameterType="String">
+        delete from tb_experiment1 where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
