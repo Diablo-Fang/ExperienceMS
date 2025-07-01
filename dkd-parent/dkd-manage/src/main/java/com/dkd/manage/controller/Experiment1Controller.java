@@ -25,7 +25,7 @@ import com.dkd.common.core.page.TableDataInfo;
  * 实验数据管理Controller
  * 
  * @author FangChuYu
- * @date 2025-06-24
+ * @date 2025-07-01
  */
 @RestController
 @RequestMapping("/manage/experiment1")

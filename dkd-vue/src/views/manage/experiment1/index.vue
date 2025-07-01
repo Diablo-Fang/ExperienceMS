@@ -62,6 +62,7 @@
       <el-table-column label="实验数据ID" align="center" prop="id" />
       <el-table-column label="学生ID" align="center" prop="studentId" />
       <el-table-column label="实验成绩" align="center" prop="experimentScore" />
+      <el-table-column label="实验进度" align="center" prop="progress" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template #default="scope">
           <el-button link type="primary" icon="Edit" @click="handleUpdate(scope.row)" v-hasPermi="['manage:experiment1:edit']">修改</el-button>
@@ -81,8 +82,23 @@
     <!-- 添加或修改实验数据管理对话框 -->
     <el-dialog :title="title" v-model="open" width="500px" append-to-body>
       <el-form ref="experiment1Ref" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="学生ID，关联student表" prop="studentId">
-          <el-input v-model="form.studentId" placeholder="请输入学生ID，关联student表" />
+        <el-form-item label="学生ID" prop="studentId">
+          <el-input v-model="form.studentId" placeholder="请输入学生ID" />
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button type="primary" @click="submitForm">确 定</el-button>
+          <el-button @click="cancel">取 消</el-button>
+        </div>
+      </template>
+    </el-dialog>
+
+    <!-- 修改实验数据管理对话框 -->
+    <el-dialog :title="title" v-model="update" width="500px" append-to-body>
+      <el-form ref="experiment1Ref" :model="form" :rules="rules" label-width="80px">
+        <el-form-item label="学生ID" prop="studentId">
+          <el-input v-model="form.studentId" placeholder="请输入学生ID" :disabled="true" />
         </el-form-item>
         <el-form-item label="表1-第一级-VC" prop="table1vc1Field">
           <el-input v-model="form.table1vc1Field" placeholder="请输入表1-第一级-VC" />
@@ -267,10 +283,10 @@
         <el-form-item label="万用表档位，枚举类型" prop="currentText">
           <el-select v-model="form.currentText" placeholder="请选择万用表档位，枚举类型">
             <el-option
-              v-for="dict in current_status"
-              :key="dict.value"
-              :label="dict.label"
-              :value="dict.value"
+                v-for="dict in current_status"
+                :key="dict.value"
+                :label="dict.label"
+                :value="dict.value"
             ></el-option>
           </el-select>
         </el-form-item>
@@ -305,6 +321,7 @@ const { current_status } = proxy.useDict('current_status');
 
 const experiment1List = ref([]);
 const open = ref(false);
+const update = ref(false);
 const loading = ref(true);
 const showSearch = ref(true);
 const ids = ref([]);
@@ -321,9 +338,6 @@ const data = reactive({
     studentId: null,
   },
   rules: {
-    studentId: [
-      { required: true, message: "学生ID，关联student表不能为空", trigger: "blur" }
-    ],
   }
 });
 
@@ -412,11 +426,12 @@ function reset() {
     table5vo2Field: null,
     currentText: null,
     vi1vo1Image: null,
+    updateTime: null,
     vi1vo2Image: null,
     vo1vo2Image: null,
     experimentScore: null,
     createTime: null,
-    updateTime: null
+    progress: null
   };
   proxy.resetForm("experiment1Ref");
 }
@@ -453,7 +468,7 @@ function handleUpdate(row) {
   const _id = row.id || ids.value
   getExperiment1(_id).then(response => {
     form.value = response.data;
-    open.value = true;
+    update.value = true;
     title.value = "修改实验数据管理";
   });
 }
@@ -465,7 +480,7 @@ function submitForm() {
       if (form.value.id != null) {
         updateExperiment1(form.value).then(response => {
           proxy.$modal.msgSuccess("修改成功");
-          open.value = false;
+          update.value = false;
           getList();
         });
       } else {

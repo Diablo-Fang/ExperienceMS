@@ -7,7 +7,7 @@ import com.dkd.manage.domain.Experiment1;
  * 实验数据管理Mapper接口
  * 
  * @author FangChuYu
- * @date 2025-06-24
+ * @date 2025-07-01
  */
 public interface Experiment1Mapper 
 {

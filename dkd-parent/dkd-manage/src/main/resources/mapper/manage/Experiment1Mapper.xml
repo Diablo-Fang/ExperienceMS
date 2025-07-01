@@ -69,15 +69,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="table5vo2Field"    column="table5vo2Field"    />
         <result property="currentText"    column="current_text"    />
         <result property="vi1vo1Image"    column="vi1vo1_image"    />
+        <result property="updateTime"    column="update_time"    />
         <result property="vi1vo2Image"    column="vi1vo2_image"    />
         <result property="vo1vo2Image"    column="vo1vo2_image"    />
         <result property="experimentScore"    column="experiment_score"    />
         <result property="createTime"    column="create_time"    />
-        <result property="updateTime"    column="update_time"    />
+        <result property="progress"    column="progress"    />
     </resultMap>
 
     <sql id="selectExperiment1Vo">
-        select id, student_id, table1vc1Field, table1vb1Field, table1ve1Field, table1vc2Field, table1vb2Field, table1ve2Field, table2vs1Field, table2vol1Field, table2avl1Field, table2vo1Field, table2av1Field, table2ri1Field, table2ro1Field, table2vo3Field, table2av3Field, table2w1Field, table2vs2Field, table2vol2Field, table2avl2Field, table2vo2Field, table2av2Field, table2ri2Field, table2ro2Field, table2vo4Field, table2av4Field, table2w2Field, table3vc11Field, table3vc21Field, table3vb11Field, table3vb21Field, table3ve11Field, table3ve21Field, table3vc12Field, table3vc22Field, table3vb12Field, table3vb22Field, table3ve12Field, table3ve22Field, table4vo11Field, table4vo21Field, table4vo1Field, table4a1Field, table4k1Field, table4vo12Field, table4vo22Field, table4vo2Field, table4a2Field, table4vo13Field, table4vo23Field, table4vo3Field, table4a3Field, table4k2Field, table4vo14Field, table4vo24Field, table4vo4Field, table4a4Field, table5vi1Field, table5vo1Field, table5vi2Field, table5vo2Field, current_text, vi1vo1_image, vi1vo2_image, vo1vo2_image, experiment_score, create_time, update_time from tb_experiment1
+        select id, student_id, table1vc1Field, table1vb1Field, table1ve1Field, table1vc2Field, table1vb2Field, table1ve2Field, table2vs1Field, table2vol1Field, table2avl1Field, table2vo1Field, table2av1Field, table2ri1Field, table2ro1Field, table2vo3Field, table2av3Field, table2w1Field, table2vs2Field, table2vol2Field, table2avl2Field, table2vo2Field, table2av2Field, table2ri2Field, table2ro2Field, table2vo4Field, table2av4Field, table2w2Field, table3vc11Field, table3vc21Field, table3vb11Field, table3vb21Field, table3ve11Field, table3ve21Field, table3vc12Field, table3vc22Field, table3vb12Field, table3vb22Field, table3ve12Field, table3ve22Field, table4vo11Field, table4vo21Field, table4vo1Field, table4a1Field, table4k1Field, table4vo12Field, table4vo22Field, table4vo2Field, table4a2Field, table4vo13Field, table4vo23Field, table4vo3Field, table4a3Field, table4k2Field, table4vo14Field, table4vo24Field, table4vo4Field, table4a4Field, table5vi1Field, table5vo1Field, table5vi2Field, table5vo2Field, current_text, vi1vo1_image, update_time, vi1vo2_image, vo1vo2_image, experiment_score, create_time, progress from tb_experiment1
     </sql>
 
     <select id="selectExperiment1List" parameterType="Experiment1" resultMap="Experiment1Result">
@@ -158,11 +159,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="table5vo2Field != null">table5vo2Field,</if>
             <if test="currentText != null">current_text,</if>
             <if test="vi1vo1Image != null">vi1vo1_image,</if>
+            <if test="updateTime != null">update_time,</if>
             <if test="vi1vo2Image != null">vi1vo2_image,</if>
             <if test="vo1vo2Image != null">vo1vo2_image,</if>
             <if test="experimentScore != null">experiment_score,</if>
             <if test="createTime != null">create_time,</if>
-            <if test="updateTime != null">update_time,</if>
+            <if test="progress != null">progress,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="studentId != null">#{studentId},</if>
@@ -228,11 +230,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="table5vo2Field != null">#{table5vo2Field},</if>
             <if test="currentText != null">#{currentText},</if>
             <if test="vi1vo1Image != null">#{vi1vo1Image},</if>
+            <if test="updateTime != null">#{updateTime},</if>
             <if test="vi1vo2Image != null">#{vi1vo2Image},</if>
             <if test="vo1vo2Image != null">#{vo1vo2Image},</if>
             <if test="experimentScore != null">#{experimentScore},</if>
             <if test="createTime != null">#{createTime},</if>
-            <if test="updateTime != null">#{updateTime},</if>
+            <if test="progress != null">#{progress},</if>
          </trim>
     </insert>
 
@@ -302,11 +305,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="table5vo2Field != null">table5vo2Field = #{table5vo2Field},</if>
             <if test="currentText != null">current_text = #{currentText},</if>
             <if test="vi1vo1Image != null">vi1vo1_image = #{vi1vo1Image},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
             <if test="vi1vo2Image != null">vi1vo2_image = #{vi1vo2Image},</if>
             <if test="vo1vo2Image != null">vo1vo2_image = #{vo1vo2Image},</if>
             <if test="experimentScore != null">experiment_score = #{experimentScore},</if>
             <if test="createTime != null">create_time = #{createTime},</if>
-            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="progress != null">progress = #{progress},</if>
         </trim>
         where id = #{id}
     </update>

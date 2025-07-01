@@ -9,18 +9,18 @@ import com.dkd.common.core.domain.BaseEntity;
  * 实验数据管理对象 tb_experiment1
  * 
  * @author FangChuYu
- * @date 2025-06-24
+ * @date 2025-07-01
  */
 public class Experiment1 extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** 实验数据主键，自增整数 */
-    @Excel(name = "实验数据主键，自增整数")
+    /** 实验数据ID */
+    @Excel(name = "实验数据ID")
     private Long id;
 
-    /** 学生ID，关联student表 */
-    @Excel(name = "学生ID，关联student表")
+    /** 学生ID */
+    @Excel(name = "学生ID")
     private Long studentId;
 
     /** 表1-第一级-VC */
@@ -203,7 +203,7 @@ public class Experiment1 extends BaseEntity
     /** 表5-反向比例-运放序号2 */
     private Long table5vo2Field;
 
-    /** 万用表档位，枚举类型 */
+    /** 万用表档位 */
     private String currentText;
 
     /** vi1vo1图像路径 */
@@ -216,7 +216,12 @@ public class Experiment1 extends BaseEntity
     private String vo1vo2Image;
 
     /** 实验成绩 */
+    @Excel(name = "实验成绩")
     private Long experimentScore;
+
+    /** 实验进度 */
+    @Excel(name = "实验进度")
+    private String progress;
 
     public void setId(Long id) 
     {
@@ -821,6 +826,15 @@ public class Experiment1 extends BaseEntity
     {
         return experimentScore;
     }
+    public void setProgress(String progress) 
+    {
+        this.progress = progress;
+    }
+
+    public String getProgress() 
+    {
+        return progress;
+    }
 
     @Override
     public String toString() {
@@ -889,11 +903,12 @@ public class Experiment1 extends BaseEntity
             .append("table5vo2Field", getTable5vo2Field())
             .append("currentText", getCurrentText())
             .append("vi1vo1Image", getVi1vo1Image())
+            .append("updateTime", getUpdateTime())
             .append("vi1vo2Image", getVi1vo2Image())
             .append("vo1vo2Image", getVo1vo2Image())
             .append("experimentScore", getExperimentScore())
             .append("createTime", getCreateTime())
-            .append("updateTime", getUpdateTime())
+            .append("progress", getProgress())
             .toString();
     }
 }
