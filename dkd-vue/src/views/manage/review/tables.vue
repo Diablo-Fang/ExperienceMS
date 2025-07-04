@@ -3,6 +3,9 @@
     <el-tabs v-model="activeTab" type="card">
       <!-- 表1数据 -->
       <el-tab-pane label="1.负反馈放大器数据记录" name="table1">
+        <div>
+          <p>表1（图1 静态工作点）</p>
+        </div>
         <el-table :data="table1_1Data" border>
           <el-table-column prop="level" label="级别"></el-table-column>
           <el-table-column prop="vc1Field" label="VC"></el-table-column>
@@ -16,6 +19,9 @@
           <el-table-column prop="ve2Field" label="VE"></el-table-column>
         </el-table>
         <br>
+        <div>
+          <p>表2（图1 动态参数）</p>
+        </div>
         <el-table :data="table2_1Data" border>
           <el-table-column prop="status" label="参数状态"></el-table-column>
           <el-table-column prop="vs1Field" label="Vs"></el-table-column>
@@ -52,6 +58,9 @@
 
       <!-- 表2数据 -->
       <el-tab-pane label="2.差分放大器数据记录" name="table2">
+        <div>
+          <p>表3（图2 静态工作点）</p>
+        </div>
         <el-table :data="table3_1Data" border>
           <el-table-column prop="type" label="电路形式"></el-table-column>
           <el-table-column prop="vc11Field" label="VC1"></el-table-column>
@@ -71,6 +80,9 @@
           <el-table-column prop="ve22Field" label="VE2"></el-table-column>
         </el-table>
         <br>
+        <div>
+          <p>表4（图2 动态参数）</p>
+        </div>
         <el-table :data="table4_1Data" border>
           <el-table-column prop="type" label="电路形式"></el-table-column>
           <el-table-column prop="signal" label="输入信号类型"></el-table-column>
@@ -149,9 +161,16 @@
 
       <!-- 表4数据 -->
       <el-tab-pane label="5.运算放大器反向比例电路" name="table4">
+        <div>
+          <p>用万用表的档位选择</p>
+        </div>
         <el-table :data="table5_3Data" border >
           <el-table-column prop="current" label="测量VA、VB信号时使用的万用表档位"></el-table-column>
         </el-table>
+        <br>
+        <div>
+          <p>表5 反向比例运算电路</p>
+        </div>
         <el-table :data="table5_1Data" border>
           <el-table-column prop="vi" label="Vi"></el-table-column>
           <el-table-column prop="vi1Field" label="Vo"></el-table-column>
