@@ -40,6 +40,7 @@
         <template #default="scope">
           <el-button link type="primary" icon="Edit" @click="handleReview(scope.row)">查看实验内容</el-button>
           <el-button link type="primary" icon="Edit" @click="handleMark(scope.row)">评分</el-button>
+          <el-button link type="success" icon="data-analysis" @click="handleAIAnalysis(scope.row)">AI实验行为分析</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -73,6 +74,16 @@
       </template>
     </el-dialog>
 
+    <!-- 新增的 AI实验行为分析 弹窗 -->
+    <el-dialog :title="aiTitle" v-model="aiDialogVisible" width="500px" append-to-body>
+      <p>{{ aiMessage }}</p>
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button @click="aiDialogVisible = false">关 闭</el-button>
+        </div>
+      </template>
+    </el-dialog>
+
 
   </div>
 </template>
@@ -96,6 +107,10 @@ const single = ref(true);
 const multiple = ref(true);
 const total = ref(0);
 const title = ref("");
+const aiDialogVisible = ref(false);
+const aiTitle = ref("AI实验行为分析");
+const aiMessage = ref("该学生高度异常，完成报告的时间短得极其反常，远远低于完成一个有效实验所需的最短合理时间。");
+
 
 const data = reactive({
   form: {},
@@ -154,6 +169,12 @@ function getList() {
 function cancel() {
   mark.value = false;
   reset();
+}
+
+/** AI实验行为分析按钮操作 */
+function handleAIAnalysis(row) {
+  // 可以根据row中的数据做更复杂的逻辑判断
+  aiDialogVisible.value = true;
 }
 
 // 表单重置
