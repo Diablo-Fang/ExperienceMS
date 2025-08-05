@@ -23,6 +23,9 @@ public class Experiment1 extends BaseEntity
     @Excel(name = "学生ID")
     private Long studentId;
 
+    /** 完成时间（分钟） */
+    private Integer completionTime;
+
     /** 表1-第一级-VC */
     private Long table1vc1Field;
 
@@ -244,6 +247,14 @@ public class Experiment1 extends BaseEntity
     public void setTable1vc1Field(Long table1vc1Field) 
     {
         this.table1vc1Field = table1vc1Field;
+    }
+
+    public Integer getCompletionTime() {
+        return completionTime;
+    }
+
+    public void setCompletionTime(Integer completionTime) {
+        this.completionTime = completionTime;
     }
 
     public Long getTable1vc1Field() 
@@ -838,77 +849,76 @@ public class Experiment1 extends BaseEntity
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("id", getId())
-            .append("studentId", getStudentId())
-            .append("table1vc1Field", getTable1vc1Field())
-            .append("table1vb1Field", getTable1vb1Field())
-            .append("table1ve1Field", getTable1ve1Field())
-            .append("table1vc2Field", getTable1vc2Field())
-            .append("table1vb2Field", getTable1vb2Field())
-            .append("table1ve2Field", getTable1ve2Field())
-            .append("table2vs1Field", getTable2vs1Field())
-            .append("table2vol1Field", getTable2vol1Field())
-            .append("table2avl1Field", getTable2avl1Field())
-            .append("table2vo1Field", getTable2vo1Field())
-            .append("table2av1Field", getTable2av1Field())
-            .append("table2ri1Field", getTable2ri1Field())
-            .append("table2ro1Field", getTable2ro1Field())
-            .append("table2vo3Field", getTable2vo3Field())
-            .append("table2av3Field", getTable2av3Field())
-            .append("table2w1Field", getTable2w1Field())
-            .append("table2vs2Field", getTable2vs2Field())
-            .append("table2vol2Field", getTable2vol2Field())
-            .append("table2avl2Field", getTable2avl2Field())
-            .append("table2vo2Field", getTable2vo2Field())
-            .append("table2av2Field", getTable2av2Field())
-            .append("table2ri2Field", getTable2ri2Field())
-            .append("table2ro2Field", getTable2ro2Field())
-            .append("table2vo4Field", getTable2vo4Field())
-            .append("table2av4Field", getTable2av4Field())
-            .append("table2w2Field", getTable2w2Field())
-            .append("table3vc11Field", getTable3vc11Field())
-            .append("table3vc21Field", getTable3vc21Field())
-            .append("table3vb11Field", getTable3vb11Field())
-            .append("table3vb21Field", getTable3vb21Field())
-            .append("table3ve11Field", getTable3ve11Field())
-            .append("table3ve21Field", getTable3ve21Field())
-            .append("table3vc12Field", getTable3vc12Field())
-            .append("table3vc22Field", getTable3vc22Field())
-            .append("table3vb12Field", getTable3vb12Field())
-            .append("table3vb22Field", getTable3vb22Field())
-            .append("table3ve12Field", getTable3ve12Field())
-            .append("table3ve22Field", getTable3ve22Field())
-            .append("table4vo11Field", getTable4vo11Field())
-            .append("table4vo21Field", getTable4vo21Field())
-            .append("table4vo1Field", getTable4vo1Field())
-            .append("table4a1Field", getTable4a1Field())
-            .append("table4k1Field", getTable4k1Field())
-            .append("table4vo12Field", getTable4vo12Field())
-            .append("table4vo22Field", getTable4vo22Field())
-            .append("table4vo2Field", getTable4vo2Field())
-            .append("table4a2Field", getTable4a2Field())
-            .append("table4vo13Field", getTable4vo13Field())
-            .append("table4vo23Field", getTable4vo23Field())
-            .append("table4vo3Field", getTable4vo3Field())
-            .append("table4a3Field", getTable4a3Field())
-            .append("table4k2Field", getTable4k2Field())
-            .append("table4vo14Field", getTable4vo14Field())
-            .append("table4vo24Field", getTable4vo24Field())
-            .append("table4vo4Field", getTable4vo4Field())
-            .append("table4a4Field", getTable4a4Field())
-            .append("table5vi1Field", getTable5vi1Field())
-            .append("table5vo1Field", getTable5vo1Field())
-            .append("table5vi2Field", getTable5vi2Field())
-            .append("table5vo2Field", getTable5vo2Field())
-            .append("currentText", getCurrentText())
-            .append("vi1vo1Image", getVi1vo1Image())
-            .append("updateTime", getUpdateTime())
-            .append("vi1vo2Image", getVi1vo2Image())
-            .append("vo1vo2Image", getVo1vo2Image())
-            .append("experimentScore", getExperimentScore())
-            .append("createTime", getCreateTime())
-            .append("progress", getProgress())
-            .toString();
+        return "Experiment1{" +
+                "id=" + id +
+                ", studentId=" + studentId +
+                ", completionTime=" + completionTime +
+                ", table1vc1Field=" + table1vc1Field +
+                ", table1vb1Field=" + table1vb1Field +
+                ", table1ve1Field=" + table1ve1Field +
+                ", table1vc2Field=" + table1vc2Field +
+                ", table1vb2Field=" + table1vb2Field +
+                ", table1ve2Field=" + table1ve2Field +
+                ", table2vs1Field=" + table2vs1Field +
+                ", table2vol1Field=" + table2vol1Field +
+                ", table2avl1Field=" + table2avl1Field +
+                ", table2vo1Field=" + table2vo1Field +
+                ", table2av1Field=" + table2av1Field +
+                ", table2ri1Field=" + table2ri1Field +
+                ", table2ro1Field=" + table2ro1Field +
+                ", table2vo3Field=" + table2vo3Field +
+                ", table2av3Field=" + table2av3Field +
+                ", table2w1Field=" + table2w1Field +
+                ", table2vs2Field=" + table2vs2Field +
+                ", table2vol2Field=" + table2vol2Field +
+                ", table2avl2Field=" + table2avl2Field +
+                ", table2vo2Field=" + table2vo2Field +
+                ", table2av2Field=" + table2av2Field +
+                ", table2ri2Field=" + table2ri2Field +
+                ", table2ro2Field=" + table2ro2Field +
+                ", table2vo4Field=" + table2vo4Field +
+                ", table2av4Field=" + table2av4Field +
+                ", table2w2Field=" + table2w2Field +
+                ", table3vc11Field=" + table3vc11Field +
+                ", table3vc21Field=" + table3vc21Field +
+                ", table3vb11Field=" + table3vb11Field +
+                ", table3vb21Field=" + table3vb21Field +
+                ", table3ve11Field=" + table3ve11Field +
+                ", table3ve21Field=" + table3ve21Field +
+                ", table3vc12Field=" + table3vc12Field +
+                ", table3vc22Field=" + table3vc22Field +
+                ", table3vb12Field=" + table3vb12Field +
+                ", table3vb22Field=" + table3vb22Field +
+                ", table3ve12Field=" + table3ve12Field +
+                ", table3ve22Field=" + table3ve22Field +
+                ", table4vo11Field=" + table4vo11Field +
+                ", table4vo21Field=" + table4vo21Field +
+                ", table4vo1Field=" + table4vo1Field +
+                ", table4a1Field=" + table4a1Field +
+                ", table4k1Field=" + table4k1Field +
+                ", table4vo12Field=" + table4vo12Field +
+                ", table4vo22Field=" + table4vo22Field +
+                ", table4vo2Field=" + table4vo2Field +
+                ", table4a2Field=" + table4a2Field +
+                ", table4vo13Field=" + table4vo13Field +
+                ", table4vo23Field=" + table4vo23Field +
+                ", table4vo3Field=" + table4vo3Field +
+                ", table4a3Field=" + table4a3Field +
+                ", table4k2Field=" + table4k2Field +
+                ", table4vo14Field=" + table4vo14Field +
+                ", table4vo24Field=" + table4vo24Field +
+                ", table4vo4Field=" + table4vo4Field +
+                ", table4a4Field=" + table4a4Field +
+                ", table5vi1Field=" + table5vi1Field +
+                ", table5vo1Field=" + table5vo1Field +
+                ", table5vi2Field=" + table5vi2Field +
+                ", table5vo2Field=" + table5vo2Field +
+                ", currentText='" + currentText + '\'' +
+                ", vi1vo1Image='" + vi1vo1Image + '\'' +
+                ", vi1vo2Image='" + vi1vo2Image + '\'' +
+                ", vo1vo2Image='" + vo1vo2Image + '\'' +
+                ", experimentScore=" + experimentScore +
+                ", progress='" + progress + '\'' +
+                '}';
     }
 }

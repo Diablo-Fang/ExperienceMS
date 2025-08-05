@@ -62,7 +62,16 @@
       <el-table-column label="实验数据ID" align="center" prop="id" />
       <el-table-column label="学生ID" align="center" prop="studentId" />
       <el-table-column label="实验成绩" align="center" prop="experimentScore" />
-      <el-table-column label="实验进度" align="center" prop="progress" />
+      <el-table-column label="实验进度" align="center">
+        <template #default="{row}">
+          <div style="display: flex; justify-content: space-evenly; align-items: center;">
+<!--            <span>{{ row.progress }}</span>-->
+            <el-button link type="primary" @click="showProgressDetails(row.progress)" v-hasPermi="['manage:experiment1:edit']">
+              <el-icon><View /></el-icon>详情
+            </el-button>
+          </div>
+        </template>
+      </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template #default="scope">
           <el-button link type="primary" icon="Edit" @click="handleUpdate(scope.row)" v-hasPermi="['manage:experiment1:edit']">修改</el-button>
@@ -310,11 +319,49 @@
         </div>
       </template>
     </el-dialog>
+
+    <!-- 添加进度详情对话框 -->
+    <el-dialog v-model="progressDialogVisible" :title="'实验进度详情'" width="600px" append-to-body :close-on-click-modal="false" class="progress-detail-dialog">
+      <div style="min-height: 120px;">
+        <!-- 进度展示 -->
+        <div class="progress-result-container">
+          <el-card class="progress-result-card">
+            <div class="progress-items">
+              <!-- 使用纵向排列布局 -->
+              <div class="progress-item-row">
+                <div class="progress-item" :class="{ completed: item.completed }" v-for="(item, index) in progressItems" :key="index">
+                  <div class="progress-header">
+                    <el-icon>
+                      <component :is="item.completed ? 'Check' : 'Close'" />
+                    </el-icon>
+                    <span>第{{ item.part }}部分</span>
+                  </div>
+                  <div class="progress-status">
+                    {{ item.completed ? '已完成' : '未完成' }}
+                  </div>
+                </div>
+              </div>
+
+              <!-- 进度统计 -->
+              <div class="progress-summary">
+                <div class="summary-item">
+                  <span class="summary-label">总进度：</span>
+                  <span class="summary-value">{{ progressItems.filter(i => i.completed).length * 20 }}%</span>
+                </div>
+              </div>
+            </div>
+          </el-card>
+        </div>
+      </div>
+    </el-dialog>
+
   </div>
 </template>
 
 <script setup name="Experiment1">
-import { listExperiment1, getExperiment1, delExperiment1, addExperiment1, updateExperiment1 } from "@/api/manage/experiment1";
+import { listExperiment1, getExperiment1 } from '@/api/manage/experiment1';
+import { listProgress } from '@/api/manage/progress';
+import { Check, Close } from '@element-plus/icons-vue';
 
 const { proxy } = getCurrentInstance();
 const { current_status } = proxy.useDict('current_status');
@@ -346,9 +393,48 @@ const { queryParams, form, rules } = toRefs(data);
 /** 查询实验数据管理列表 */
 function getList() {
   loading.value = true;
+  
+  // 先获取实验数据列表
   listExperiment1(queryParams.value).then(response => {
-    experiment1List.value = response.rows;
-    total.value = response.total;
+    const experimentData = response.rows;
+    
+    // 获取所有学生ID
+    const studentIds = [...new Set(experimentData.map(item => item.studentId))];
+    
+    // 查询实验进度数据
+    return listProgress({ studentIds }).then(progressResponse => {
+      const progressMap = progressResponse.rows.reduce((acc, curr) => {
+        acc[curr.studentId] = curr.progress;
+        return acc;
+      }, {});
+
+      // 合并数据
+      experiment1List.value = experimentData.map(item => ({
+        ...item,
+        progress: progressMap[item.studentId] || '00000'
+      }));
+
+      // // 合并数据并计算进度百分比
+      // experiment1List.value = experimentData.map(item => {
+      //   const progressStr = progressMap[item.studentId];
+      //   let percentage = 0;
+      //
+      //   if (progressStr) {
+      //     const ones = progressStr.match(/1/g) || [];
+      //     percentage = Math.min(ones.length * 20, 100);
+      //   }
+      //
+      //   return {
+      //     ...item,
+      //     progress: `${percentage}%`
+      //   };
+      // });
+      
+      total.value = response.total;
+      loading.value = false;
+    });
+  }).catch(error => {
+    proxy.$modal.msgError("数据加载失败: " + error.message);
     loading.value = false;
   });
 }
@@ -512,5 +598,125 @@ function handleExport() {
   }, `experiment1_${new Date().getTime()}.xlsx`)
 }
 
+// 新增响应式变量
+const progressDialogVisible = ref(false);
+const progressLoading = ref(false);
+const analysisDuration = ref(0);
+const progressItems = ref([]);
+
+// 新增进度详情解析方法
+function showProgressDetails(progressStr) {
+  if (!progressStr) {
+    proxy.$modal.msgWarning('无进度数据');
+    return;
+  }
+  
+  progressLoading.value = true;
+  progressDialogVisible.value = true;
+  
+  // 模拟异步加载
+  setTimeout(() => {
+    progressItems.value = progressStr.split('').map((char, index) => ({
+      part: index + 1,
+      completed: char === '1'
+    }));
+    
+    // 记录耗时
+    const startTime = Date.now();
+    // 模拟数据处理
+    setTimeout(() => {
+      analysisDuration.value = Date.now() - startTime;
+      progressLoading.value = false;
+    }, 300);
+  }, 200);
+}
+
 getList();
 </script>
+
+<style scoped>
+.progress-result-container {
+  margin: 20px 0;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.progress-result-card {
+  border-radius: 10px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+}
+
+.progress-items {
+  padding: 15px;
+}
+
+/* 纵向排列容器 */
+.progress-item-row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.progress-item {
+  text-align: center;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f5f7fa;
+  transition: transform 0.2s;
+}
+
+.progress-item.completed {
+  background-color: #f0f9f0;
+  transform: scale(1.05);
+}
+
+.progress-item:hover {
+  transform: scale(1.05);
+}
+
+.progress-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.progress-header .el-icon {
+  margin-right: 8px;
+}
+
+.progress-status {
+  font-size: 14px;
+  color: #666;
+}
+
+.progress-summary {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #ecf5ff;
+  border-radius: 6px;
+}
+
+.summary-item {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.summary-label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.summary-value {
+  font-size: 20px;
+  color: #1890ff;
+}
+
+::v-deep .progress-detail-dialog .el-dialog__body {
+  padding: 20px;
+}
+</style>

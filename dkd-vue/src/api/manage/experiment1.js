@@ -42,3 +42,19 @@ export function delExperiment1(id) {
     method: 'delete'
   })
 }
+
+// 获取AI分析结果
+export function getAIAnalysis(studentId) {
+  return request({
+    url: `/manage/experiment1/aiAnalysis/${studentId}`,
+    method: 'get'
+  });
+}
+
+// 获取AI评分结果
+export function getExperimentScore(studentId) {
+  return request({
+    url: `/manage/experiment1/experimentScore/${studentId}`,
+    method: 'get'
+  });
+}

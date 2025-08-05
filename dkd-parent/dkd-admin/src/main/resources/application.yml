@@ -127,3 +127,8 @@ xss:
   excludes: /system/notice
   # 匹配链接
   urlPatterns: /system/*,/monitor/*,/tool/*
+
+ai:
+  analysis:
+    enabled: true
+    timeout: 10000 # 超时时间ms
