@@ -114,6 +114,20 @@
         <div v-if="!aiLoading" class="analysis-result-container">
           <!-- 使用el-card增强视觉效果 -->
           <el-card class="analysis-result-card">
+            <!-- 添加实验阶段耗时表格 -->
+            <div v-if="res && res.data" class="phase-table">
+              <h4>各部分完成时间</h4>
+              <el-table :data="phaseTableData" border style="width: 100%; margin-bottom: 20px;">
+                <el-table-column prop="phase" label="实验阶段" width="150" align="center"/>
+                <el-table-column prop="time" label="耗时（分钟）" align="center">
+                  <template #default="{ row }">
+                    {{ row.time }}
+                  </template>
+                </el-table-column>
+              </el-table>
+            </div>
+
+            <!-- 原有分析文本 -->
             <div class="analysis-text" v-html="formattedAnalysisText"></div>
 
             <!-- 添加评分组件 -->
@@ -641,6 +655,18 @@ function stopScoreAnimation() {
   scoreProgress.value = 100;
 }
 
+const phaseTableData = computed(() => {
+  if (!res.value?.data) return [];
+  
+  return [
+    { phase: '第一部分', time: res.value.data.part1Time },
+    { phase: '第二部分', time: res.value.data.part2Time },
+    { phase: '第三部分', time: res.value.data.part3Time },
+    { phase: '第四部分', time: res.value.data.part4Time },
+    { phase: '第五部分', time: res.value.data.part5Time },
+    { phase: '共计', time: res.value.data.part1Time + res.value.data.part2Time + res.value.data.part3Time + res.value.data.part4Time + res.value.data.part5Time }
+  ];
+});
 
 getList();
 </script>
@@ -840,5 +866,18 @@ getList();
 .operation .score-value {
   color: #FF9900;
 }
-</style>
 
+/* 实验阶段表格样式 */
+.phase-table {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.phase-table h4 {
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 16px;
+}
+</style>

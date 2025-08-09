@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 
 
+import com.dkd.manage.domain.Experiment1Progress;
+import com.dkd.manage.service.IExperiment1ProgressService;
 import com.dkd.manage.utils.DeepSeek;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -34,6 +36,8 @@ public class Experiment1Controller extends BaseController
 {
     @Autowired
     private IExperiment1Service experiment1Service;
+    @Autowired
+    private IExperiment1ProgressService experiment1ProgressService;
 
     /**
      * 查询实验数据管理列表
@@ -122,11 +126,29 @@ public class Experiment1Controller extends BaseController
 //
 //            // 调用AI分析
 //            String analysisResult = DeepSeek.judgeCheatingSuspicionWithAI(completionTime);
-            String analysisResult = DeepSeek.judgeCheatingSuspicionWithAI(50);
+            Experiment1Progress experiment1Progress = experiment1ProgressService.selectExperiment1ProgressById(studentId);
+            if (experiment1Progress == null) {
+                return AjaxResult.error("未找到学生实验数据");
+            }
+            Long part1_time = experiment1Progress.getPart1Time();
+            Long part2_time = experiment1Progress.getPart2Time();
+            Long part3_time = experiment1Progress.getPart3Time();
+            Long part5_time = experiment1Progress.getPart5Time();
+            Long part6_time = experiment1Progress.getPart6Time();
+            // 计算总完成时间（单位：分钟）
+            int totalCompletionTime = (int)(part1_time + part2_time + part3_time + part5_time + part6_time);;
+            String analysisResult = DeepSeek.judgeCheatingSuspicionWithAI(totalCompletionTime);
 
             // 解析JSON结果
             ObjectMapper mapper = new ObjectMapper();
             Map<String, Object> resultMap = mapper.readValue(analysisResult, new TypeReference<Map<String, Object>>() {});
+
+            // 添加各个实验部分耗时信息
+            resultMap.put("part1Time", part1_time.intValue());
+            resultMap.put("part2Time", part2_time.intValue());
+            resultMap.put("part3Time", part3_time.intValue());
+            resultMap.put("part4Time", part5_time.intValue());
+            resultMap.put("part5Time", part6_time.intValue());
 
             // 验证返回格式
             if (!resultMap.containsKey("suspicious") ||

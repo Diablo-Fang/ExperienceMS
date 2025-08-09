@@ -145,6 +145,19 @@
           <el-table-column type="selection" width="50" align="center" />
           <el-table-column label="序号" align="center" prop="index" width="50"/>
         </el-table>
+        <el-divider content-position="center">实验进度记录信息</el-divider>
+        <el-row :gutter="10" class="mb8">
+          <el-col :span="1.5">
+            <el-button type="primary" icon="Plus" @click="handleAddExperiment1Progress">添加</el-button>
+          </el-col>
+          <el-col :span="1.5">
+            <el-button type="danger" icon="Delete" @click="handleDeleteExperiment1Progress">删除</el-button>
+          </el-col>
+        </el-row>
+        <el-table :data="experiment1ProgressList" :row-class-name="rowExperiment1ProgressIndex" @selection-change="handleExperiment1ProgressSelectionChange" ref="experiment1Progress">
+          <el-table-column type="selection" width="50" align="center" />
+          <el-table-column label="序号" align="center" prop="index" width="50"/>
+        </el-table>
       </el-form>
       <template #footer>
         <div class="dialog-footer">
@@ -164,11 +177,13 @@ const { current_status } = proxy.useDict('current_status');
 
 const studentList = ref([]);
 const experiment1List = ref([]);
+const experiment1ProgressList = ref([]);
 const open = ref(false);
 const loading = ref(true);
 const showSearch = ref(true);
 const ids = ref([]);
 const checkedExperiment1 = ref([]);
+const checkedExperiment1Progress = ref([]);
 const single = ref(true);
 const multiple = ref(true);
 const total = ref(0);
@@ -224,6 +239,7 @@ function reset() {
     remark: null
   };
   experiment1List.value = [];
+  experiment1ProgressList.value = [];
   proxy.resetForm("studentRef");
 }
 
@@ -260,6 +276,7 @@ function handleUpdate(row) {
   getStudent(_id).then(response => {
     form.value = response.data;
     experiment1List.value = response.data.experiment1List;
+    experiment1ProgressList.value = response.data.experiment1ProgressList;
     open.value = true;
     title.value = "修改学生管理";
   });
@@ -270,6 +287,7 @@ function submitForm() {
   proxy.$refs["studentRef"].validate(valid => {
     if (valid) {
       form.value.experiment1List = experiment1List.value;
+      form.value.experiment1ProgressList = experiment1ProgressList.value;
       if (form.value.id != null) {
         updateStudent(form.value).then(response => {
           proxy.$modal.msgSuccess("修改成功");
@@ -303,10 +321,28 @@ function rowExperiment1Index({ row, rowIndex }) {
   row.index = rowIndex + 1;
 }
 
+/** 实验进度记录序号 */
+function rowExperiment1ProgressIndex({ row, rowIndex }) {
+  row.index = rowIndex + 1;
+}
+
 /** 实验数据管理添加按钮操作 */
 function handleAddExperiment1() {
   let obj = {};
   experiment1List.value.push(obj);
+}
+
+/** 实验进度记录添加按钮操作 */
+function handleAddExperiment1Progress() {
+  let obj = {};
+  obj.progress = "";
+  obj.part1Time = "";
+  obj.part2Time = "";
+  obj.part3Time = "";
+  obj.part4Time = "";
+  obj.part5Time = "";
+  obj.part6Time = "";
+  experiment1ProgressList.value.push(obj);
 }
 
 /** 实验数据管理删除按钮操作 */
@@ -322,9 +358,27 @@ function handleDeleteExperiment1() {
   }
 }
 
+/** 实验进度记录删除按钮操作 */
+function handleDeleteExperiment1Progress() {
+  if (checkedExperiment1Progress.value.length == 0) {
+    proxy.$modal.msgError("请先选择要删除的实验进度记录数据");
+  } else {
+    const experiment1Progresss = experiment1ProgressList.value;
+    const checkedExperiment1Progresss = checkedExperiment1Progress.value;
+    experiment1ProgressList.value = experiment1Progresss.filter(function(item) {
+      return checkedExperiment1Progresss.indexOf(item.index) == -1
+    });
+  }
+}
+
 /** 复选框选中数据 */
 function handleExperiment1SelectionChange(selection) {
   checkedExperiment1.value = selection.map(item => item.index)
+}
+
+/** 复选框选中数据 */
+function handleExperiment1ProgressSelectionChange(selection) {
+  checkedExperiment1Progress.value = selection.map(item => item.index)
 }
 
 /** 导出按钮操作 */

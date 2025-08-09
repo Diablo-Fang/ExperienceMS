@@ -66,7 +66,7 @@
         <template #default="{row}">
           <div style="display: flex; justify-content: space-evenly; align-items: center;">
 <!--            <span>{{ row.progress }}</span>-->
-            <el-button link type="primary" @click="showProgressDetails(row.progress)" v-hasPermi="['manage:experiment1:edit']">
+            <el-button link type="primary" @click="showProgressDetails(row.progress)" v-hasPermi="['manage:experiment1:progress']">
               <el-icon><View /></el-icon>详情
             </el-button>
           </div>
@@ -362,6 +362,7 @@
 import { listExperiment1, getExperiment1 } from '@/api/manage/experiment1';
 import { listProgress } from '@/api/manage/progress';
 import { Check, Close } from '@element-plus/icons-vue';
+import {addExperiment1, delExperiment1, updateExperiment1} from "../../../api/manage/experiment1";
 
 const { proxy } = getCurrentInstance();
 const { current_status } = proxy.useDict('current_status');
@@ -718,5 +719,13 @@ getList();
 
 ::v-deep .progress-detail-dialog .el-dialog__body {
   padding: 20px;
+}
+
+/* 权限禁用样式 */
+.permission-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #f5f7fa !important;
+  border-color: #e4e7ed !important;
 }
 </style>

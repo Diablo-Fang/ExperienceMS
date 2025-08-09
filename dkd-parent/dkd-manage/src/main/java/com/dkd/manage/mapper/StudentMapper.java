@@ -1,6 +1,8 @@
 package com.dkd.manage.mapper;
 
 import java.util.List;
+
+import com.dkd.manage.domain.Experiment1Progress;
 import com.dkd.manage.domain.Student;
 import com.dkd.manage.domain.Experiment1;
 
@@ -84,4 +86,29 @@ public interface StudentMapper
      * @return 结果
      */
     public int deleteExperiment1ByStudentId(Long id);
+
+    /**
+     * 批量删除实验进度记录
+     *
+     * @param ids 需要删除的数据主键集合
+     * @return 结果
+     */
+    public int deleteExperiment1ProgressByStudentIds(Long[] ids);
+
+    /**
+     * 批量新增实验进度记录
+     *
+     * @param experiment1ProgressList 实验进度记录列表
+     * @return 结果
+     */
+    public int batchExperiment1Progress(List<Experiment1Progress> experiment1ProgressList);
+
+
+    /**
+     * 通过学生管理主键删除实验进度记录信息
+     *
+     * @param id 学生管理ID
+     * @return 结果
+     */
+    public int deleteExperiment1ProgressByStudentId(Long id);
 }

@@ -2,6 +2,7 @@ package com.dkd.manage.service.impl;
 
 import java.util.List;
 import com.dkd.common.utils.DateUtils;
+import com.dkd.manage.domain.Experiment1Progress;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -61,6 +62,7 @@ public class StudentServiceImpl implements IStudentService
         student.setCreateTime(DateUtils.getNowDate());
         int rows = studentMapper.insertStudent(student);
         insertExperiment1(student);
+        insertExperiment1Progress(student);
         return rows;
     }
 
@@ -75,7 +77,9 @@ public class StudentServiceImpl implements IStudentService
     public int updateStudent(Student student)
     {
         studentMapper.deleteExperiment1ByStudentId(student.getId());
+        studentMapper.deleteExperiment1ProgressByStudentId(student.getId());
         insertExperiment1(student);
+        insertExperiment1Progress(student);
         return studentMapper.updateStudent(student);
     }
 
@@ -90,6 +94,7 @@ public class StudentServiceImpl implements IStudentService
     public int deleteStudentByIds(Long[] ids)
     {
         studentMapper.deleteExperiment1ByStudentIds(ids);
+        studentMapper.deleteExperiment1ProgressByStudentIds(ids);
         return studentMapper.deleteStudentByIds(ids);
     }
 
@@ -104,6 +109,7 @@ public class StudentServiceImpl implements IStudentService
     public int deleteStudentById(Long id)
     {
         studentMapper.deleteExperiment1ByStudentId(id);
+        studentMapper.deleteExperiment1ProgressByStudentId(id);
         return studentMapper.deleteStudentById(id);
     }
 
@@ -127,6 +133,30 @@ public class StudentServiceImpl implements IStudentService
             if (list.size() > 0)
             {
                 studentMapper.batchExperiment1(list);
+            }
+        }
+    }
+
+    /**
+     * 新增实验进度记录信息
+     *
+     * @param student 学生管理对象
+     */
+    public void insertExperiment1Progress(Student student)
+    {
+        List<Experiment1Progress> experiment1ProgressList = student.getExperiment1ProgressList();
+        Long id = student.getId();
+        if (StringUtils.isNotNull(experiment1ProgressList))
+        {
+            List<Experiment1Progress> list = new ArrayList<Experiment1Progress>();
+            for (Experiment1Progress experiment1Progress : experiment1ProgressList)
+            {
+                experiment1Progress.setStudentId(id);
+                list.add(experiment1Progress);
+            }
+            if (list.size() > 0)
+            {
+                studentMapper.batchExperiment1Progress(list);
             }
         }
     }

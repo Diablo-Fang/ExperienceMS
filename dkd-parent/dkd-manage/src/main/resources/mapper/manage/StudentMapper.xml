@@ -18,6 +18,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <collection property="experiment1List" notNullColumn="sub_id" javaType="java.util.List" resultMap="Experiment1Result" />
     </resultMap>
 
+    <resultMap id="StudentExperiment1ProgressResult" type="Student" extends="StudentExperiment1Result">
+        <collection property="experiment1ProgressList" notNullColumn="sub_id" javaType="java.util.List" resultMap="Experiment1ProgressResult" />
+    </resultMap>
+
     <resultMap type="Experiment1" id="Experiment1Result">
         <result property="id"    column="sub_id"    />
         <result property="studentId"    column="sub_student_id"    />
@@ -88,6 +92,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="experimentScore"    column="sub_experiment_score"    />
         <result property="createTime"    column="sub_create_time"    />
         <result property="updateTime"    column="sub_update_time"    />
+    </resultMap>
+
+
+    <resultMap type="Experiment1Progress" id="Experiment1ProgressResult">
+        <result property="id"    column="sub_id"    />
+        <result property="studentId"    column="sub_student_id"    />
+        <result property="progress"    column="sub_progress"    />
+        <result property="part1Time"    column="sub_part1_time"    />
+        <result property="part2Time"    column="sub_part2_time"    />
+        <result property="part3Time"    column="sub_part3_time"    />
+        <result property="part4Time"    column="sub_part4_time"    />
+        <result property="part5Time"    column="sub_part5_time"    />
+        <result property="part6Time"    column="sub_part6_time"    />
+        <result property="createdAt"    column="sub_created_at"    />
+        <result property="updatedAt"    column="sub_updated_at"    />
     </resultMap>
 
     <sql id="selectStudentVo">
@@ -183,6 +202,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         insert into tb_experiment1( id, student_id, table1vc1Field, table1vb1Field, table1ve1Field, table1vc2Field, table1vb2Field, table1ve2Field, table2vs1Field, table2vol1Field, table2avl1Field, table2vo1Field, table2av1Field, table2ri1Field, table2ro1Field, table2vo3Field, table2av3Field, table2w1Field, table2vs2Field, table2vol2Field, table2avl2Field, table2vo2Field, table2av2Field, table2ri2Field, table2ro2Field, table2vo4Field, table2av4Field, table2w2Field, table3vc11Field, table3vc21Field, table3vb11Field, table3vb21Field, table3ve11Field, table3ve21Field, table3vc12Field, table3vc22Field, table3vb12Field, table3vb22Field, table3ve12Field, table3ve22Field, table4vo11Field, table4vo21Field, table4vo1Field, table4a1Field, table4k1Field, table4vo12Field, table4vo22Field, table4vo2Field, table4a2Field, table4vo13Field, table4vo23Field, table4vo3Field, table4a3Field, table4k2Field, table4vo14Field, table4vo24Field, table4vo4Field, table4a4Field, table5vi1Field, table5vo1Field, table5vi2Field, table5vo2Field, current_text, vi1vo1_image, vi1vo2_image, vo1vo2_image, experiment_score, create_time, update_time) values
 		<foreach item="item" index="index" collection="list" separator=",">
             ( #{item.id}, #{item.studentId}, #{item.table1vc1Field}, #{item.table1vb1Field}, #{item.table1ve1Field}, #{item.table1vc2Field}, #{item.table1vb2Field}, #{item.table1ve2Field}, #{item.table2vs1Field}, #{item.table2vol1Field}, #{item.table2avl1Field}, #{item.table2vo1Field}, #{item.table2av1Field}, #{item.table2ri1Field}, #{item.table2ro1Field}, #{item.table2vo3Field}, #{item.table2av3Field}, #{item.table2w1Field}, #{item.table2vs2Field}, #{item.table2vol2Field}, #{item.table2avl2Field}, #{item.table2vo2Field}, #{item.table2av2Field}, #{item.table2ri2Field}, #{item.table2ro2Field}, #{item.table2vo4Field}, #{item.table2av4Field}, #{item.table2w2Field}, #{item.table3vc11Field}, #{item.table3vc21Field}, #{item.table3vb11Field}, #{item.table3vb21Field}, #{item.table3ve11Field}, #{item.table3ve21Field}, #{item.table3vc12Field}, #{item.table3vc22Field}, #{item.table3vb12Field}, #{item.table3vb22Field}, #{item.table3ve12Field}, #{item.table3ve22Field}, #{item.table4vo11Field}, #{item.table4vo21Field}, #{item.table4vo1Field}, #{item.table4a1Field}, #{item.table4k1Field}, #{item.table4vo12Field}, #{item.table4vo22Field}, #{item.table4vo2Field}, #{item.table4a2Field}, #{item.table4vo13Field}, #{item.table4vo23Field}, #{item.table4vo3Field}, #{item.table4a3Field}, #{item.table4k2Field}, #{item.table4vo14Field}, #{item.table4vo24Field}, #{item.table4vo4Field}, #{item.table4a4Field}, #{item.table5vi1Field}, #{item.table5vo1Field}, #{item.table5vi2Field}, #{item.table5vo2Field}, #{item.currentText}, #{item.vi1vo1Image}, #{item.vi1vo2Image}, #{item.vo1vo2Image}, #{item.experimentScore}, #{item.createTime}, #{item.updateTime})
+        </foreach>
+    </insert>
+
+    <delete id="deleteExperiment1ProgressByStudentIds" parameterType="String">
+        delete from tb_experiment1_progress where student_id in
+        <foreach item="studentId" collection="array" open="(" separator="," close=")">
+            #{studentId}
+        </foreach>
+    </delete>
+
+    <delete id="deleteExperiment1ProgressByStudentId" parameterType="Long">
+        delete from tb_experiment1_progress where student_id = #{studentId}
+    </delete>
+
+    <insert id="batchExperiment1Progress">
+        insert into tb_experiment1_progress( id, student_id, progress, part1_time, part2_time, part3_time, part4_time, part5_time, part6_time, created_at, updated_at) values
+        <foreach item="item" index="index" collection="list" separator=",">
+            ( #{item.id}, #{item.studentId}, #{item.progress}, #{item.part1Time}, #{item.part2Time}, #{item.part3Time}, #{item.part4Time}, #{item.part5Time}, #{item.part6Time}, #{item.createdAt}, #{item.updatedAt})
         </foreach>
     </insert>
 </mapper>

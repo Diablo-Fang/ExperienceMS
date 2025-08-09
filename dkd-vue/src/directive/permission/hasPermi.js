@@ -19,7 +19,10 @@ export default {
       })
 
       if (!hasPermissions) {
-        el.parentNode && el.parentNode.removeChild(el)
+        //el.parentNode && el.parentNode.removeChild(el)
+        el.disabled = true
+        // 添加灰色样式类
+        el.classList.add('permission-disabled')
       }
     } else {
       throw new Error(`请设置操作权限标签值`)

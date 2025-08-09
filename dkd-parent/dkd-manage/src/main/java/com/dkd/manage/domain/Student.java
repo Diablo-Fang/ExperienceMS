@@ -42,6 +42,9 @@ public class Student extends BaseEntity
     /** 实验数据管理信息 */
     private List<Experiment1> experiment1List;
 
+    /** 实验进度记录信息 */
+    private List<Experiment1Progress> experiment1ProgressList;
+
     public void setId(Long id) 
     {
         this.id = id;
@@ -98,6 +101,16 @@ public class Student extends BaseEntity
         this.experiment1List = experiment1List;
     }
 
+    public List<Experiment1Progress> getExperiment1ProgressList()
+    {
+        return experiment1ProgressList;
+    }
+
+    public void setExperiment1ProgressList(List<Experiment1Progress> experiment1ProgressList)
+    {
+        this.experiment1ProgressList = experiment1ProgressList;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
@@ -109,6 +122,7 @@ public class Student extends BaseEntity
             .append("createTime", getCreateTime())
             .append("remark", getRemark())
             .append("experiment1List", getExperiment1List())
+            .append("experiment1ProgressList", getExperiment1ProgressList())
             .toString();
     }
 }
